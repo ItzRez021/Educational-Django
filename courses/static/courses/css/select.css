@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  font-family: 'IRANSans', sans-serif;
+  background: #f2fefe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.select-panel {
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+  padding: 2rem;
+}
+
+.select-panel__title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #063970;
+}
+
+.select-panel__subtitle {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.select-panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.select-panel__card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.08);
+  padding: 2rem 1.5rem;
+  width: 280px;
+  transition: 0.3s ease;
+  text-align: center;
+}
+
+.select-panel__card:hover {
+  transform: translateY(-5px);
+  background: #f0f8ff;
+}
+
+.select-panel__card i {
+  font-size: 2.5rem;
+  color: #007bcd;
+  margin-bottom: 1rem;
+}
+
+.select-panel__card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: #063970;
+}
+
+.select-panel__card p {
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.select-panel__btn {
+  display: inline-block;
+  background: #007bcd;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.select-panel__btn:hover {
+  background: #005fa3;
+}
+  .back-link {
+      margin: 3rem auto;
+      display: block;
+      text-align: center;
+      color: #0077cc;
+      text-decoration: none;
+      font-weight: bold;
+       background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.08);
+  padding: 2rem 1.5rem;
+  width: 10rem;
+  transition: 0.3s ease;
+  text-align: center;
+    }
+    .back-link:hover{
+        transform: translateY(-5px);
+  background: #f0f8ff;
+    }
+@media (max-width: 768px) {
+  .select-panel__actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .select-panel__card {
+    width: 100%;
+  }
+}

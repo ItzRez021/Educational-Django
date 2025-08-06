@@ -1,0 +1,84 @@
+body {
+    font-family: 'Lalezar', cursive;
+  background: #f0f4f8;
+  margin: 0;
+}
+
+.verify {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.verify__container {
+  background: white;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.verify__title {
+  font-size: 1.5rem;
+  color: #0a033c;
+  margin-bottom: 0.5rem;
+}
+
+.verify__desc {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.verify__inputs {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+   direction: ltr;
+}
+
+.verify__inputs input {
+  width: 45px;
+  height: 55px;
+  font-size: 1.5rem;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: all 0.3s;
+}
+
+.verify__inputs input:focus {
+  border-color: #00aeef;
+  box-shadow: 0 0 5px rgba(0, 174, 239, 0.4);
+  outline: none;
+}
+
+.verify__btn {
+  background: #00aeef;
+  color: white;
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.verify__btn:hover {
+  background: #0090cc;
+}
+
+.verify__links {
+  margin-top: 1.2rem;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.verify__links a {
+  color: #00aeef;
+  text-decoration: none;
+}

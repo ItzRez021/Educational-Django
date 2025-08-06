@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}contact us{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'home/css/responsive.css' %}" />
+  <link rel="stylesheet" href="{% static 'home/css/reset.css' %}">
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v33.003/Vazir-font-face.css" rel="stylesheet" />
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-…"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="{% static 'home/css/contact-to-us.css' %}" />
+{% endblock %}
+{% block body %}
+    <!-- CONTACT INFO -->
+    <section class="contact-info">
+      <div class="info-box">
+        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="details">
+          <strong>موقعیت ما</strong><br />
+          ایران، استان تهران<br />
+          میدان آزادی، خیابان ۹ شرقی
+        </div>
+      </div>
+
+      <div class="info-box">
+        <div class="icon"><i class="fas fa-envelope"></i></div>
+        <div class="details">
+          <strong>ایمیل ما</strong><br />
+          hello@gmail.com<br />
+          info@domain.com
+        </div>
+      </div>
+
+      <div class="info-box">
+        <div class="icon"><i class="fas fa-phone-alt"></i></div>
+        <div class="details">
+          <strong>تلفن</strong><br />
+          ۰۲۱-۴۴۴۴۵۵۵۵<br />
+          ۰۲۱-۵۵۵۵۸۷۶۴
+        </div>
+      </div>
+    </section>
+
+    <!-- contact -->
+    <section class="contact">
+      <div class="container">
+        <div class="contact__header">
+          <p class="contact__subtitle">ارسال پیام</p>
+          <h2 class="contact__title">برای شروع آماده اید ؟</h2>
+        </div>
+
+
+        <form class="contact__form" action="{% url 'home:contactus' %}" method="POST">
+          {% csrf_token %}
+          <div class="contact__fields">
+            <div class="contact__field">
+              <label for="name" class="contact__label">نام</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value="{{ request.user.name }}"
+                class="contact__input"
+                required
+              />
+            </div>
+            <div class="contact__field">
+              <label for="email" class="contact__label">ایمیل</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value="{{ request.user.email }}"
+                class="contact__input"
+                required
+              />
+            </div>
+            <div class="contact__field">
+              <label for="phon-number" class="contact__label">شماره تلفن</label>
+              <input
+                type="text"
+                id="phone"
+                name="number"
+                placeholder="09XXXXXXXXX"
+                class="contact__input"
+                required
+              />
+            </div>
+
+            <div class="contact__field">
+              <label for="title" class="contact__label">موضوع شما</label>
+              <input
+                type="title"
+                id="title"
+                name="req_title"
+                class="contact__input"
+                required
+              />
+            </div>
+
+            <div class="contact__field contact__field--full">
+              <label for="message" class="contact__label">پیام</label>
+              <textarea
+                id="message"
+                name="req_pm"
+                class="contact__textarea"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+          </div>
+          <div class="rulls">
+            <div class="rulls-container">
+              <div class="rulls-text">
+                پذیرفتن <a href="{% url 'home:rules' %}" class="rulls-link">قوانین و ضوابط</a> و
+                <a href="{% url 'home:privacy' %}" class="rulls-link">حریم خصوصی.</a>
+              </div>
+              <input
+                type="checkbox"
+                id="checkbox"
+                name="check"
+                class="rulls-check"
+                required
+              />
+            </div>
+          </div>
+          <button type="submit" class="contact__button">ارسال پیام</button>
+        </form>
+      </div>
+    </section>
+
+    <!--  map -->
+<section class="map-section">
+  <h2>موقعیت ما روی نقشه</h2>
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d648517.8196083241!2d50.57409142167722!3d35.69306778396116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8efbdfb2727d4d%3A0x813f8f0a96a84c4!2sTehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2s!4v1657815299900!5m2!1sen!2s"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+</section>
+
+
+<!-- ====================== subscribe====================== -->
+<section class="subscribe-section">
+  <div class="subscribe-container">
+    <div class="subscribe-text">
+      <p class="subscribe-subtitle">آیا تحت تاثیر خدمات شگفت‌انگیز هستید؟</p>
+      <h2 class="subscribe-title">مشترک خبرنامه ما شوید</h2>
+    </div>
+    <form class="subscribe-form" action="{% url 'home:contactuss' %}" method="post">
+      {% csrf_token %}
+      <input type="email" name="email" value="{{ user.email }}" placeholder="آدرس ایمیل شما" required>
+      <button type="submit">مشترک شدن</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load duration_filters %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'courses/css/Educational-Product-Page.css' %}">
+  <link rel="stylesheet" href="{% static 'courses/css/responsive.css' %}" />
+  <link rel="stylesheet" href="{% static 'courses/css/reset.css' %}">
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v33.003/Vazir-font-face.css" rel="stylesheet" />
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-…"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+{% endblock %}
+{% block body %}
+<!-- Educational Product Section -->
+<section class="course">
+  <div class="course__container">
+
+    <!-- Video and Info -->
+    <div class="course__top">
+      <!-- Video Preview -->
+      <div class="course__video">
+      {% with first_title=co.titles.first %}
+        {% if first_title and first_title.videos.first %}
+          <video controls poster="{{ first_title.videos.first.thumbnail.url }}">
+            <source src="{{ first_title.videos.first.video.url }}" type="video/mp4" />
+          </video>
+        {% else %}
+          <p>ویدیویی برای نمایش وجود ندارد.</p>
+        {% endif %}
+      {% endwith %}
+
+      </div>
+
+      <!-- Course Info -->
+      <div class="course__details">
+        <h2 class="course__title">{{ co.name }}</h2>
+        <p class="course__desc">
+          {{co.info}}
+        </p>
+
+        <div class="course__meta">
+          <span><i class="fa fa-video"></i>{{ co.total_hours|duration_from_hours }} محتوای ویدیویی</span>
+          <span><i class="fa fa-signal"></i> سطح {{co.level}}</span>
+          <span><i class="fa fa-globe"></i> زبان: {{co.language}}</span>
+          <span><i class="fa fa-clock"></i> {{co.Sessions}} جلسه</span>
+        </div>
+
+        <div class="course__price">
+          {% if co.discount %}
+          <span class="course__price-current">{{co.total_price}} تومان</span>
+          <span class="course__price-old">{{co.discount}} تومان</span>
+          {% else %}
+          <span class="course__price-old">{{co.discount}} تومان</span>
+          {% endif %}
+        </div>
+        {% if user.is_teacher %}
+          <a href="{% url 'courses:allcourses' %}" style="background-color: grey;" class="course__btn">شما معلم هستید</a>
+
+        {% elif Out %}
+          <a href="{% url 'accounts:profile' user.pk %}" style="background-color: grey;" class="course__btn">شما دوره را خریداری کرده اید</a>
+
+        {% elif OutW and InCart %}
+          <a href="{% url 'courses:addtocartcourse' co.pk %}" class="course__btn" style="background-color: grey;">برداشتن از سبد خرید</a>
+          <a style="font-size: xx-large; text-decoration: none; color: black;" href="{% url 'courses:uprate' co.id %}">🌟</a>
+
+        {% elif OutW %}
+          <a href="{% url 'courses:addtocartcourse' co.pk %}" class="course__btn">افزودن به سبد خرید</a>
+          <a style="font-size: xx-large; text-decoration: none; color: black;" href="{% url 'courses:uprate' co.id %}">🌟</a>
+
+        {% elif InCart %}
+          <a href="{% url 'courses:addtocartcourse' co.pk %}" style="background-color: grey;" class="course__btn">برداشتن از سبد خرید</a>
+          <a style="font-size: xx-large; text-decoration: none; color: black;" href="{% url 'courses:uprate' co.id %}">⭐</a>
+
+        {% else %}
+          <a href="{% url 'courses:addtocartcourse' co.pk %}" class="course__btn">افزودن به سبد خرید</a>
+          <a style="font-size: xx-large; text-decoration: none;" href="{% url 'courses:uprate' co.id %}">⭐</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Instructor Info -->
+    <div class="course__instructor">
+      <img src="{{co.teacher.icon.url}}" alt="مربی" class="course__instructor-img" />
+      <div>
+        <h4 class="course__instructor-name">{{co.teacher.name}}</h4>
+        <p class="course__instructor-bio">{{co.teacher.bio}}</p>
+      </div>
+    </div>
+
+    <!-- Course Features -->
+     {% if co.options %}
+    <div class="course__features">
+      <h3>ویژگی‌های این دوره</h3>
+      <ul>
+        {% for c in co.options.all %}
+        <li><i class="fa fa-check-circle"></i>{{c.option}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}

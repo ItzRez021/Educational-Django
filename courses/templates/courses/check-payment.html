@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}خرید دوره {{co.name}} توسط کاربر {{request.user.name}}{% endblock %}
+{% block css %}
+        <link rel="stylesheet" href="{% static 'courses/css/check-payment.css' %}" />
+        <link rel="stylesheet" href="{% static 'courses/css/responsive2.css' %}" />
+        <link rel="stylesheet" href="{% static 'courses/css/reset.css' %}" />
+        <link
+            href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v33.003/Vazir-font-face.css"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-…"
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+{% endblock %}
+{% block body %}
+        <section class="page-header">
+            <h1>بررسی پرداخت</h1>
+            <nav class="breadcrumb">
+                <a class="page-header__index" href="{% url 'home:home' %}">خانه</a>
+                <span>/</span>
+                <a class="breadcrumb__contact" href="{% url 'home:contactus' %}">
+                    بررسی پرداخت
+                </a>
+            </nav>
+        </section>
+
+        <section class="checkout">
+            <div class="checkout__container">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="checkout__billing">
+                        <h3 class="checkout__billing-title">جزئیات صورتحساب</h3>
+                        <div class="checout__billing--display-flex">
+                            <div class="checkout__billing-form">
+                                <div class="checkout__billing-form-group">
+                                    <label for="firstname">
+                                        نام شما<span class="requierd">*</span>
+                                    </label>
+                                    <input id="firstname" value="{{request.user.name}}" name="name" type="text" />
+                                </div>
+                                <div class="checkout__billing-form-group">
+                                    <label for="lastname">
+                                        نام خانوادگی<span class="requierd"
+                                            >*</span
+                                        >
+                                    </label>
+                                    <input id="lastname" name="famil" type="text" />
+                                </div>
+                                <div
+                                    class="checkout__billing-form-group checkout__billing-form-group--2-cols"
+                                >
+                                    <label for="company"> نام شرکت </label>
+                                    <input id="company" type="text" name="cn" />
+                                </div>
+                                <div
+                                    class="checkout__billing-form-group checkout__billing-form-group--2-cols"
+                                >
+                                    <label for="address">
+                                        آدرس<span class="requierd">*</span>
+                                    </label>
+                                    <input id="address" type="text" name="adress" />
+                                </div>
+                                <div
+                                    class="checkout__billing-form-group checkout__billing-form-group--2-cols"
+                                >
+                                    <label for="country"> کشور </label>
+                                    <input id="country" type="text" name="country" />
+                                </div>
+                                <div class="checkout__billing-form-group">
+                                    <label for="city-or-village">
+                                        شهر / روستا<span class="requierd"
+                                            >*</span
+                                        >
+                                    </label>
+                                    <input id="city-or-village" type="text" name="city" />
+                                </div>
+                                <div class="checkout__billing-form-group">
+                                    <label for="postcode">
+                                        کد پستی<span class="requierd">*</span>
+                                    </label>
+                                    <input id="postcode" type="text" name="pc" />
+                                </div>
+                                <div class="checkout__billing-form-group">
+                                    <label for="email">
+                                        آدرس ایمیل<span class="requierd"
+                                            >*</span
+                                        >
+                                    </label>
+                                    <input id="email" type="email" value="{{request.user.email}}" name="email" />
+                                </div>
+                                <div class="checkout__billing-form-group">
+                                    <label for="phone">
+                                        تلفن<span class="requierd">*</span>
+                                    </label>
+                                    <input name="number" id="phone" type="tel" />
+                                </div>
+                                <div
+                                    class="checkout__billing-form-group checkout__billing-form-group--2-cols"
+                                >
+                                    <textarea
+                                        class="checkout__billing-form-note"
+                                        placeholder="یادداشت سفارش"
+                                        name="paymenti"
+                                    ></textarea>
+                                </div>
+                            </div>
+                            <div class="checkout__container2">
+                                <div class="checkout__sidebar">
+                                    <div class="checkout__total">
+                                        <h3 class="checkout__total-title">
+                                            خلاصه صورتحساب
+                                        </h3>
+                                        <ul>
+                                            <li>قیمت دوره : {{co.price}} تومان</li>
+                                            <li
+                                                class="checkout__total-item--border-bottom"
+                                            >
+                                                تخفیف دوره : {{co.discount}} تومان
+                                            </li>
+                                            <li>
+                                                <span
+                                                    >مجموع قابل پرداخت : {{co.total_price}} تومان</span
+                                                >
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="checkout__methode">
+                                        <h3 class="checkout__methode-title">
+                                            روش پرداخت
+                                        </h3>
+                                        <!-- <form action=""> -->
+                                        <div class="checkout__methode-text-box">
+                                            <div
+                                                class="checkout__methode-checkbox"
+                                            >
+                                                <input type="radio" id="bank" name="waytp" value="direct" checked />
+                                                <label for=""
+                                                    >انتقال مستقیم بانکی</label
+                                                >
+                                            </div>
+                                            <p>
+                                                پرداخت خود را مستقیماً به حساب
+                                                بانکی ما انجام دهید. لطفا از
+                                                شناسه سفارش خود به عنوان مرجع
+                                                پرداخت استفاده کنید. سفارش شما
+                                                تا زمانی که وجوه در حساب ما
+                                                تسویه نشده باشد ارسال نخواهد شد.
+                                            </p>
+                                            <div
+                                                class="checkout__methode-checkbox"
+                                            >
+                                                <input type="radio" id="paypal" name="waytp" value="paypal" />
+                                                <label for="">پی پال</label>
+                                            </div>
+                                            <div
+                                                class="checkout__methode-btn-container"
+                                            >
+                                                <button
+                                                    class="checkout__methode-btn"
+                                                    name="submit_form2"
+                                                    type="submit"
+                                                >
+                                                    محل سفارش
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="subscribe-section">
+            <div class="subscribe-container">
+                <div class="subscribe-text">
+                    <p class="subscribe-subtitle">
+                        آیا تحت تاثیر خدمات شگفت‌انگیز هستید؟
+                    </p>
+                    <h2 class="subscribe-title">مشترک خبرنامه ما شوید</h2>
+                </div>
+                <form class="subscribe-form" method="post">
+                    {% csrf_token %}
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="آدرس ایمیل شما"
+                        required
+                    />
+                    <button name="submit_form1" type="submit">مشترک شدن</button>
+                </form>
+            </div>
+        </section>
+{% endblock %}

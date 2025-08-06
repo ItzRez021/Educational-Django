@@ -1,0 +1,295 @@
+/* =============== HEADER (منوی بالای صفحه) =============== */
+.header {
+  background: #fff;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.header__container {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__logo {
+   text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: #0056b3;
+}
+.header__nav {
+  display: flex;
+}
+.header__menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+.header__link {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+.header__link--active {
+  font-weight: bold;
+  color: #0056b3;
+}
+.header__icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header__search {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.header__register {
+  background: #e92d2e;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.header__burger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 20px;
+}
+.hero__search {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.search-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #333;
+  padding: 0.5rem;
+}
+
+
+.course {
+  padding: 60px 20px;
+  background: #fefefe;
+    font-family: 'Lalezar', cursive;
+}
+
+.course__container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.course__top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.course__video {
+  flex: 1 1 55%;
+}
+
+.course__video video {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.course__details {
+  flex: 1 1 40%;
+}
+
+.course__title {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #003366;
+}
+
+.course__desc {
+  font-size: 15px;
+  margin-bottom: 20px;
+  color: #555;
+  line-height: 1.7;
+}
+
+.course__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.course__meta i {
+  color: #00a5ff;
+  margin-left: 5px;
+}
+
+.course__price {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.course__price-current {
+  font-size: 20px;
+  font-weight: bold;
+  color: #00a5ff;
+}
+
+.course__price-old {
+  font-size: 15px;
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.course__btn {
+  padding: 12px 24px;
+  background: #00a5ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.course__btn:hover {
+  background: #007cc3;
+}
+
+.course__instructor {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.course__instructor-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.course__instructor-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.course__instructor-bio {
+  font-size: 14px;
+  color: #666;
+}
+
+.course__features h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.course__features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.course__features li {
+  font-size: 15px;
+  margin-bottom: 12px;
+  color: #007cc3;
+}
+
+.course__features i {
+  margin-left: 6px;
+  color: #00a5ff;
+}
+
+
+
+/* footer.css */
+.footer {
+  background-color: #0727b4;
+  color: #ccc;
+  padding: 60px 0 30px;
+  direction: rtl;
+}
+
+.footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.footer__column {
+  flex: 1 1 250px;
+  min-width: 200px;
+}
+
+.footer__logo {
+  font-size: 28px;
+  color: #007bff;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.footer__text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #aaa;
+}
+
+.footer__title {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.footer__menu,
+.footer__social {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__link,
+.footer__social-link {
+  display: block;
+  font-size: 15px;
+  color: #ccc;
+  margin-bottom: 10px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__link:hover,
+.footer__social-link:hover {
+  color: #007bff;
+}
+
+.footer__bottom {
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.footer__copyright {
+  font-size: 14px;
+  color: #777;
+}

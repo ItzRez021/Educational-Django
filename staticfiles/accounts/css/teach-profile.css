@@ -1,0 +1,223 @@
+body {
+  background: #f8f8f8;
+    font-family: 'Lalezar', cursive;
+  margin: 0;
+  padding: 0;
+}
+
+.coach-profile {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 3px 18px 0 #0001;
+  padding: 2rem 1.2rem;
+}
+
+.coach-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.coach-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #ddd;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #0a9cc7;
+}
+.coach-info {
+  flex: 1;
+}
+.coach-name {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+.coach-email,
+.coach-phone {
+  color: #888;
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+.coach-edit-btn {
+  background: red;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.coach-stats {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  background: #f4fbff;
+  border-radius: 1rem;
+  padding: 1rem 0.6rem;
+  font-size: 1.02rem;
+}
+
+.coach-tabs {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 1px 8px #0001;
+}
+.coach-tab-buttons {
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+.tab-btn {
+  flex: 1;
+  padding: 1rem;
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1.05rem;
+  cursor: pointer;
+  color: #444;
+  border-bottom: 2px solid transparent;
+  transition: 0.15s;
+}
+.tab-btn.active,
+.tab-btn:hover {
+  color: #0a9cc7;
+  background: #f2fafd;
+  border-bottom: 2px solid #0a9cc7;
+}
+.coach-tab-content {
+  display: none;
+  padding: 2rem 1rem;
+}
+.coach-tab-content.active {
+  display: block;
+}
+
+.coach-course-list,
+#coachQuestions,
+#coachComments {
+  margin-top: 1.5rem;
+}
+.coach-course-card,
+.coach-question-card,
+.coach-comment-card {
+  background: #fafdff;
+  border: 1px solid #e4f4fb;
+  border-radius: 0.8rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: space-between;
+  font-size: 1.03rem;
+}
+.card-title {
+  font-weight: bold;
+}
+.badge.published {
+  color: #16a085;
+  font-weight: bold;
+}
+.badge.draft {
+  color: #888;
+}
+.card-btn,
+.course-add-btn,
+.income-btn {
+  background: #0a9cc7;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.4rem 1.2rem;
+  margin: 0 0.2rem;
+  cursor: pointer;
+  font-size: 0.98rem;
+  transition: background 0.18s;
+  text-decoration: none;
+}
+.card-btn.delete,
+.card-btn.report {
+  background: #c0392b;
+}
+.card-btn.approve {
+  background: #27ae60;
+}
+.course-add-btn {
+  margin-bottom: 1.2rem;
+  font-weight: bold;
+}
+.income-btn {
+  background: #16a085;
+  margin-top: 1.3rem;
+}
+.card-btn.answer {
+  background: #fbc02d;
+  color: #222;
+}
+.card-btn.reply {
+  background: #2e77d0;
+}
+.answer-status {
+  color: #16a085;
+  font-weight: bold;
+}
+.coach-questions-filter {
+  margin-bottom: 1.2rem;
+}
+select {
+  border-radius: 0.4rem;
+  padding: 0.3rem 0.7rem;
+}
+.coach-stats-list {
+  margin-bottom: 1.2rem;
+}
+.form-group {
+  margin-bottom: 1.1rem;
+}
+label {
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+  display: block;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #bbb;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+.settings-save-btn {
+  background: #27ae60;
+  margin-top: 0.8rem;
+  width: 100%;
+  padding: 0.7rem 0;
+  font-weight: bold;
+  font-size: 1.07rem;
+}
+
+@media (max-width: 700px) {
+  .coach-profile {
+    padding: 0.7rem 0.3rem;
+  }
+  .coach-header,
+  .coach-stats {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .coach-tab-content {
+    padding: 1.2rem 0.2rem;
+  }
+
+}

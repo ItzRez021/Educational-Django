@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load filters %}
+{% block title %} پروفایل {{ profile.name }}{% endblock %}
+{% block css %}
+  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
+  <link rel="stylesheet" href="{% static 'accounts/css/responsive.css' %}" />
+  <link rel="stylesheet" href="{% static 'accounts/css/reset.css' %}">
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v33.003/Vazir-font-face.css" rel="stylesheet" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <style>
+    .profile__tab-content {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .profile__tab-content--active {
+      display: block;
+      opacity: 1;
+    }
+  </style>
+{% endblock %}
+{% block body %}
+<section class="profile">
+  <div class="profile__header">
+    {% if user.is_teacher %}
+      <div class="profile__avatar" style="background-image: url('{{ user.teacher.icon.url }}')"></div>
+    {% else %}
+      <div class="profile__avatar" style="background-image: url('{{ profile.icon.url }}')"></div>
+    {% endif %}
+    <div class="profile__info">
+      <div class="profile__name">{{ profile.name }}</div>
+      <div class="profile__email">{{ profile.email }}</div>
+    </div>
+    <form action="{% url 'accounts:logout' %}" method="post">
+      {% csrf_token %}
+      <button class="profile__edit-button" style="background-color: red;" type="submit">خروج از حساب</button>
+    </form>
+  </div>
+
+  <div class="profile__stats">
+    <div class="profile__stat">دوره‌ های ثبت‌ نام‌ شده : <strong>{{ co.count }}</strong></div>
+    <div class="profile__stat">دوره‌ های تکمیل‌ شده : <strong>{{ profile.ended_courses }}</strong></div>
+    <div class="profile__stat">مدارک کسب‌ شده : <strong>{{ profile.documents }}</strong></div>
+  </div>
+
+  <div class="profile__tabs">
+    <div class="profile__tab-buttons">
+      <button type="button" class="profile__tab-button profile__tab-button--active" onclick="showTab(0)">دوره‌های من</button>
+      <button type="button" class="profile__tab-button" onclick="showTab(1)">علاقه‌مندی‌ها</button>
+      <button type="button" class="profile__tab-button" onclick="showTab(2)">گواهینامه‌ها</button>
+      <button type="button" class="profile__tab-button" onclick="showTab(3)">تنظیمات</button>
+      <button type="button" class="profile__tab-button" onclick="showTab(4)">رمز عبور</button>
+    </div>
+
+    <!-- Tab 0: My Courses -->
+    <div class="profile__tab-content profile__tab-content--active">
+        {% if co.exists %}
+          {% for c in co %}
+          <div class="course-card">
+            <div>
+              <div class="course-card__title">{{ c.course.name }}</div>
+              <div class="course-card__progress">
+{% with course_progress|get_item:c.course.id as progress %}
+    <div class="course-card__progress-bar" style="width: {{ progress }}%;"></div>
+{% endwith %}
+              </div>
+              <a class="course-card__button" href="{% url 'courses:watchthecourse' c.course.id %}" >ادامه دادن</a>
+            </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <span class="nocourse">شما هیچ دوره ای ندارید</span>
+        {% endif %}
+      </div>
+
+    <!-- Tab 1: Wishlist -->
+<div class="profile__tab-content">
+  {% if wo %}
+    {% for w in wo %}
+      {% for c in w.course.all %}
+        <div class="wishlist-card">
+          <div class="wishlist-card__image" style="background-image: url('{{ c.thumbnail.url }}')"></div>
+          <div>
+            <div class="wishlist-card__title">{{ c.name }}</div>
+            <a style="text-decoration:none;" class="wishlist-card__button" href="{% url 'courses:coursedetail' pk=c.id %}">دیدن دوره</a>
+          </div>
+        </div>
+      {% endfor %}
+    {% endfor %}
+  {% else %}
+    <div class="wishlist-card">
+      <div class="wishlist-card__title">لیست علاقه‌مندی شما خالی است</div>
+    </div>
+  {% endif %}
+</div>
+
+    <!-- Tab 2: Certificates -->
+    <div class="profile__tab-content">
+      {% if profile.documents != 0 %}
+      <p>شما {{profile.documents}} مدرک رسمی دریافت کرده‌اید. برای دانلود به بخش گواهینامه‌ها مراجعه کنید.</p>
+      {% else %}
+      <p>شما مدرکی ندارید</p>
+      {% endif %}
+    </div>
+
+    <!-- Tab 3: Settings -->
+    <div class="profile__tab-content">
+      <div class="settings__group">
+        <label class="settings__label" for="email-change">تغییر ایمیل</label>
+        <a id="email-change" href="{% url 'accounts:changeemail' %}" style="text-decoration: none;" class="settings__button settings__button--secondary">رفتن به صفحه تغییر ایمیل</a>
+      </div>
+
+      <form method="post" enctype="multipart/form-data" action="{% url 'accounts:userchangeprof' profile.pk %}" >
+        {% csrf_token %}
+        <div class="settings__group">
+          <label class="settings__label" for="name">نام</label>
+          <input id="name" name="name" type="text" class="settings__input" placeholder="نام کاربری" value="{{ profile.name }}">
+        </div>
+
+        <div class="settings__group">
+          <label class="settings__label" for="icon">انتخاب عکس پروفایل</label>
+          <input id="icon" name="icon" type="file" class="settings__input">
+        </div>
+
+        <button type="submit" class="settings__button">ذخیره تغییرات</button>
+        <button type="button" class="settings__button settings__button--secondary">حذف حساب کاربری</button>
+      </form>
+    </div>
+
+    <!-- Tab 4: Change Password -->
+    <div class="profile__tab-content">
+      <form method="post" action="{% url 'accounts:changepass' %}">
+        {% csrf_token %}
+        <div class="settings__group">
+          <label class="settings__label" for="old_password">رمز عبور فعلی</label>
+          <input id="old_password" name="old_password" type="password" class="settings__input" placeholder="رمز عبور فعلی">
+        </div>
+        <div class="settings__group">
+          <label class="settings__label" for="new_password">رمز عبور جدید</label>
+          <input id="new_password" name="new_password1" type="password" class="settings__input" placeholder="رمز عبور جدید">
+        </div>
+        <div class="settings__group">
+          <label class="settings__label" for="confirm_password">تکرار رمز عبور جدید</label>
+          <input id="confirm_password" name="new_password2" type="password" class="settings__input" placeholder="تکرار رمز عبور جدید">
+        </div>
+        <button type="submit" class="settings__button">ذخیره تغییرات</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  function showTab(index) {
+    const buttons = document.querySelectorAll('.profile__tab-button');
+    const contents = document.querySelectorAll('.profile__tab-content');
+
+    buttons.forEach(btn => btn.classList.remove('profile__tab-button--active'));
+    contents.forEach(tab => tab.classList.remove('profile__tab-content--active'));
+
+    buttons[index].classList.add('profile__tab-button--active');
+    contents[index].classList.add('profile__tab-content--active');
+  }
+
+</script>
+{% endblock %}

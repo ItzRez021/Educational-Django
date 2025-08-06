@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
+  <link rel="stylesheet" href="{% static 'accounts/css/responsive.css' %}" />
+  <link rel="stylesheet" href="{% static 'accounts/css/reset.css' %}">
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v33.003/Vazir-font-face.css" rel="stylesheet" />
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-…"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+{% endblock %}
+{% block body %}
+
+  <div class="login-container">
+    <div class="login-image">
+      <img src="{{MU}}img/buy-education.png" alt="Login Illustration" />
+    </div>
+    <div class="login-form">
+      <h2>ورود به حساب کاربری</h2>
+      <form action="{% url 'accounts:login' %}" method="POST">
+        {% csrf_token %}
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="email">ایمیل</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">رمز عبور</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="login-btn">ورود</button>
+        <div class="login-footer">
+          حساب کاربری ندارید؟ <a href="{% url 'accounts:register' %}">ثبت‌نام کنید</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  
+{% endblock %}

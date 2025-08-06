@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}تغییرات در دوره {{ co.name }}{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'courses/css/select.css' %}" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+{% endblock %}
+{% block body %}
+  <div class="select-panel">
+    <h2 class="select-panel__title">سلام مربی عزیز 👋</h2>
+    <p class="select-panel__subtitle">لطفاً یکی از گزینه‌های زیر را انتخاب کنید:</p>
+
+    <div class="select-panel__actions">
+      <div class="select-panel__card">
+        <i class="fas fa-layer-group"></i>
+        <h3>افزودن فصل</h3>
+        <p>یک فصل جدید به دوره‌های خود اضافه کن</p>
+        <a href="{% url 'courses:uploadtitle' co.id %}" class="select-panel__btn">افزودن فصل</a>
+      </div>
+
+      <div class="select-panel__card">
+        <i class="fas fa-video"></i>
+        <h3>افزودن قسمت</h3>
+        <p>ویدیوی آموزشی جدید به دوره اضافه کن</p>
+        <a href="{% url 'courses:uploadvideo' co.id %}" class="select-panel__btn">افزودن قسمت</a>
+      </div>
+      <a href="{% url 'accounts:teacherprofile' user.teacher.pk %}" class="back-link">⬅ بازگشت   </a>
+    </div>
+  </div>
+{% endblock %}

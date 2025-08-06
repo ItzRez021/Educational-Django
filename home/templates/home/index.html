@@ -1,0 +1,399 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home Page{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'home/css/index.css' %}" />
+  <link rel="stylesheet" href="{% static 'home/css/responsive.css' %}" />
+  <link rel="stylesheet" href="{% static 'home/css/reset.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__container">
+      <div class="hero__text">
+        <p class="hero__subtitle">برای آینده‌ای بهتر</p>
+        <h1 class="hero__title">مهیج ترین دوره های آنلاین را کشف کنید</h1>
+        <p class="hero__desc">لورم ایپسوم به سادگی... ساختار صنعت بوده است.</p>
+        <div class="hero__search-wrapper">
+          <form action="{% url 'home:search' %}" method="get">
+          <input type="search" class="hero__search" name="q" placeholder="جستجوی دوره‌ها" />
+          <button class="hero__btn" type="button">جستجو کن</button>
+        </div>
+      </div>
+      <div class="hero__image">
+        <img src="{{MU}}img/hero.png" alt="Hero Image" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Info Bar -->
+  <section class="info-bar">
+    <div class="info-bar__container">
+      <div class="info-bar__item">
+        <span class="info-bar__num">+{{co.count}}</span>
+        <span class="info-bar__text">دوره‌ها و فیلم‌ها</span>
+      </div>
+      <div class="info-bar__item">
+        <span class="info-bar__num">+{{cou}}</span>
+        <span class="info-bar__text">دانش‌ آموزان ثبت‌ نامی</span>
+      </div>
+      <div class="info-bar__item">
+        <span class="info-bar__num">+{{teach.count}}</span>
+        <span class="info-bar__text">مدرسان دوره‌ها</span>
+      </div>
+      <div class="info-bar__item">
+        <span class="info-bar__num">{{rate}}%</span>
+        <span class="info-bar__text">میزان رضایت</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="categories">
+    <div class="categories__header">
+      <h2 class="categories__title">دسته‌بندی‌های برتر را کاوش کنید</h2>
+      <button class="categories__btn">بیشتر کاوش کنید</button>
+    </div>
+    <div class="categories__list">
+      <div class="categories__item">سلامتی و تناسب اندام</div>
+      <div class="categories__item">سبک زندگی</div>
+      <div class="categories__item">طراحی وب</div>
+      <div class="categories__item">توسعه‌دهنده</div>
+      <div class="categories__item">علوم داده</div>
+      <div class="categories__item">اکانتینگ</div>
+      <div class="categories__item">عکاسی</div>
+      <div class="categories__item categories__item--highlight">امتحانات</div>
+    </div>
+  </section>
+
+  <!-- Popular Courses -->
+  <section class="popular">
+    <h2 class="popular__title">دوره‌های محبوب را پیدا کنید</h2>
+    <div class="popular__list">
+      <div class="popular__card">
+        <img src="{{MU}}img/front-end-learning.png" alt="Course" class="popular__img" />
+        <div class="popular__info">
+          <p class="popular__price">۱۳۰ تومان</p>
+          <p class="popular__name">آموزش برنامه نویسی وب </p>
+          <div class="popular__meta">
+            <span>۱۰ ساعت و ۷ دقیقه</span>
+            <span>۶۷ سخنرانی</span>
+          </div>
+          <div class="popular__footer">
+            <span class="popular__rating">۴.۴⭐</span>
+            <span class="popular__teacher">دیوید وارمر</span>
+          </div>
+        </div>
+      </div>
+       <div class="popular__card">
+        <img src="{{MU}}img/backendpng.png" alt="Course" class="popular__img" />
+        <div class="popular__info">
+          <p class="popular__price">۱۳۰ تومان</p>
+          <p class="popular__name">آموزش برنامه نویسی بک اند</p>
+          <div class="popular__meta">
+            <span>۱۰ ساعت و ۷ دقیقه</span>
+            <span>۶۷ سخنرانی</span>
+          </div>
+          <div class="popular__footer">
+            <span class="popular__rating">۴.۴⭐</span>
+            <span class="popular__teacher">دیوید وارمر</span>
+          </div>
+        </div>
+      </div>
+       <div class="popular__card">
+        <img src="{{MU}}img/ui-ux-learning.png" alt="Course" class="popular__img" />
+        <div class="popular__info">
+          <p class="popular__price">۱۳۰ تومان</p>
+          <p class="popular__name">آموزش طراحی ui/ux</p>
+          <div class="popular__meta">
+            <span>۱۰ ساعت و ۷ دقیقه</span>
+            <span>۶۷ سخنرانی</span>
+          </div>
+          <div class="popular__footer">
+            <span class="popular__rating">۴.۴⭐</span>
+            <span class="popular__teacher">دیوید وارمر</span>
+          </div>
+        </div>
+      </div>
+       <div class="popular__card">
+        <img src="{{MU}}img/pyton.png" alt="Course" class="popular__img" />
+        <div class="popular__info">
+          <p class="popular__price">۱۳۰ تومان</p>
+          <p class="popular__name">آموزش برنامه نویسی پایتون</p>
+          <div class="popular__meta">
+            <span>۱۰ ساعت و ۷ دقیقه</span>
+            <span>۶۷ سخنرانی</span>
+          </div>
+          <div class="popular__footer">
+            <span class="popular__rating">۴.۴⭐</span>
+            <span class="popular__teacher">دیوید وارمر</span>
+          </div>
+        </div>
+      </div>
+       <div class="popular__card">
+        <img src="{{MU}}img/machin-learning.png" alt="Course" class="popular__img" />
+        <div class="popular__info">
+          <p class="popular__price">۱۳۰ تومان</p>
+          <p class="popular__name">آموزش ماشین لرنینگ (هوش مصنوعی)</p>
+          <div class="popular__meta">
+            <span>۱۰ ساعت و ۷ دقیقه</span>
+            <span>۶۷ سخنرانی</span>
+          </div>
+          <div class="popular__footer">
+            <span class="popular__rating">۴.۴⭐</span>
+            <span class="popular__teacher">دیوید وارمر</span>
+          </div>
+        </div>
+      </div>
+       <div class="popular__card">
+        <img src="{{MU}}img/c-learning.png" alt="Course" class="popular__img" />
+        <div class="popular__info">
+          <p class="popular__price">۱۳۰ تومان</p>
+          <p class="popular__name">آموزش برنامه نویسی c#</p>
+          <div class="popular__meta">
+            <span>۱۰ ساعت و ۷ دقیقه</span>
+            <span>۶۷ سخنرانی</span>
+          </div>
+          <div class="popular__footer">
+            <span class="popular__rating">۴.۴⭐</span>
+            <span class="popular__teacher">دیوید وارمر</span>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </section>
+  <!-- Instructors Section -->
+<section class="instructors">
+  <div class="instructors__container">
+    <div class="instructors__header">
+      <h2 class="instructors__title">با مربی برتر ما آشنا شوید</h2>
+      <p class="instructors__desc">
+        لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می‌گیرد. لورم ایپسوم به مدت ۴۰ سال استاندارد صنعت بوده است.
+      </p>
+      <a href="#" class="instructors__btn">مشاهده همه مربیان</a>
+    </div>
+
+    <div class="instructors__list">
+      <div class="instructors__card">
+        <img src="{{MU}}img/woman-teach-1.png" alt="مربی" class="instructors__img" />
+        <div class="instructors__socials">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <h4 class="instructors__name">سالی ولچ</h4>
+        <p class="instructors__role">طراح وب</p>
+      </div>
+
+      
+      <div class="instructors__card">
+        <img src="{{MU}}img/man-teach-2.png" alt="مربی" class="instructors__img" />
+        <div class="instructors__socials">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <h4 class="instructors__name">سالی ولچ</h4>
+        <p class="instructors__role">طراح وب</p>
+      </div>
+
+        <div class="instructors__card">
+        <img src="{{MU}}img/man-teach-1.png" alt="مربی" class="instructors__img" />
+        <div class="instructors__socials">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <h4 class="instructors__name">سالی ولچ</h4>
+        <p class="instructors__role">طراح وب</p>
+      </div>
+
+
+        <div class="instructors__card">
+        <img src="{{MU}}img/woman-teach-2.png" alt="مربی" class="instructors__img" />
+        <div class="instructors__socials">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <h4 class="instructors__name">سالی ولچ</h4>
+        <p class="instructors__role">طراح وب</p>
+      </div>
+
+     
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+  <div class="testimonials__container">
+    <h2 class="testimonials__title">آنچه شاگرد خوشحال ما می‌گوید</h2>
+    <div class="testimonials__list">
+      
+      
+      <div class="testimonial__card">
+        <img src="{{MU}}img/studen-1.png" class="testimonial__avatar" alt="دانشجو" />
+        <div class="testimonial__stars">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial__text">
+          "لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می‌گیرد. لورم ایپسوم به مدت ۴۰ سال استاندارد صنعت بوده است."
+        </p>
+        <div class="testimonial__name">نیکولاس پروتون</div>
+        <div class="testimonial__role">دانش آموز</div>
+      </div>
+
+    
+      <div class="testimonial__card">
+        <img src="{{MU}}img/student-2.png" class="testimonial__avatar" alt="دانشجو" />
+        <div class="testimonial__stars">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial__text">
+          "لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می‌گیرد. لورم ایپسوم به مدت ۴۰ سال استاندارد صنعت بوده است."
+        </p>
+        <div class="testimonial__name">نیکولاس پروتون</div>
+        <div class="testimonial__role">دانش آموز</div>
+      </div>
+
+      <div class="testimonial__card">
+        <img src="{{MU}}img/studen-3.png" class="testimonial__avatar" alt="دانشجو" />
+        <div class="testimonial__stars">⭐⭐⭐⭐⭐</div>
+        <p class="testimonial__text">
+          "لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می‌گیرد. لورم ایپسوم به مدت ۴۰ سال استاندارد صنعت بوده است."
+        </p>
+        <div class="testimonial__name">نیکولاس پروتون</div>
+        <div class="testimonial__role">دانش آموز</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Promo Section -->
+<section class="promo">
+  <div class="promo__container">
+   
+    <div class="promo__image">
+      <img src="{{MU}}img/hero2.png" alt="Promo Trainer" />
+
+    
+      <div class="promo__tag promo__tag--top-left">
+        <span class="promo__icon"><i class="fa fa-gift"></i></span>
+        ۴۰٪ تخفیف بگیرید
+      </div>
+
+      <div class="promo__tag promo__tag--bottom-left">
+        <span class="promo__icon"><i class="fa fa-users"></i></span>
+        بیش از ۱۱۰ هزار دانش‌آموز
+      </div>
+
+      <div class="promo__tag promo__tag--center">
+        <span class="promo__icon"><i class="fa fa-envelope"></i></span>
+        با همکاری کنید!
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="promo__content">
+      <h2 class="promo__title">ما مجرب‌ترین مربیان را در شهر شما داریم.</h2>
+      <p class="promo__desc">
+        لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می‌گیرد. لورم ایپسوم به مدت ۴۰ سال استاندارد صنعت بوده است.
+      </p>
+      <ul class="promo__list">
+        <li><i class="fa fa-check-circle"></i> دسترسی تمام عمر</li>
+        <li><i class="fa fa-check-circle"></i> بیش از ۲۰ منبع قابل دانلود</li>
+        <li><i class="fa fa-check-circle"></i> گواهی پایان کار</li>
+        <li><i class="fa fa-check-circle"></i> آزمایشی رایگان ۷ روز</li>
+      </ul>
+      <a href="{% url 'accounts:register' %}" class="promo__btn">امروز ثبت نام کن</a>
+    </div>
+  </div>
+</section>
+
+<!-- blog-->
+
+<section class="blog">
+  <div class="container">
+    <div class="blog__header">
+      <h2 class="blog__title">آخرین مقالات</h2>
+      <p class="blog__subtitle">جدیدترین مطالب آموزشی و اخبار را بخوانید</p>
+    </div>
+   <div class="blog__list">
+      <article class="blog__item">
+        <div class="blog__image-wrapper">
+          <img src="{{MU}}img/how-start-education.png" alt="blog1" class="blog__image" />
+        </div>
+        <div class="blog__content">
+          <span class="blog__date">۱۶ خرداد ۱۴۰۴</span>
+          <h3 class="blog__item-title">چطور یادگیری آنلاین را شروع کنیم؟</h3>
+          <p class="blog__text">در این مقاله مراحل شروع یادگیری آنلاین را بررسی می‌کنیم...</p>
+          <a href="#" class="blog__link">بیشتر بخوانید</a>
+        </div>
+      </article>
+
+      <article class="blog__item">
+        <div class="blog__image-wrapper">
+          <img src="{{MU}}img/5tips.png" alt="blog2" class="blog__image" />
+        </div>
+        <div class="blog__content">
+          <span class="blog__date">۱۰ خرداد ۱۴۰۴</span>
+          <h3 class="blog__item-title">۵ نکته برای مطالعه مؤثر</h3>
+          <p class="blog__text">با این ۵ تکنیک می‌توانید یادگیری خود را بهبود دهید...</p>
+          <a href="#" class="blog__link">بیشتر بخوانید</a>
+        </div>
+      </article>
+
+      <article class="blog__item">
+        <div class="blog__image-wrapper">
+          <img src="{{MU}}img/buy-education.png" alt="blog3" class="blog__image" />
+        </div>
+        <div class="blog__content">
+          <span class="blog__date">۵ خرداد ۱۴۰۴</span>
+          <h3 class="blog__item-title">راهنمای خرید دوره‌های آموزشی</h3>
+          <p class="blog__text">در این راهنما به شما کمک می‌کنیم دوره مناسب خود را انتخاب کنید...</p>
+          <a href="#" class="blog__link">بیشتر بخوانید</a>
+        </div>
+      </article>
+    </div>
+
+    <form class="blog__form" action="/load-more-articles" method="POST">
+      <input type="hidden" name="action" value="load_more_articles">
+      <button type="submit" class="blog__button">مشاهده بیشتر مقالات</button>
+    </form>
+  </div>
+</section>
+
+<!-- contact-->
+<section class="contact">
+  <div class="container">
+    <div class="contact__header">
+      <h2 class="contact__title">تماس با ما</h2>
+      <p class="contact__subtitle">برای ارتباط با ما فرم زیر را پر کنید</p>
+    </div>
+    <form class="contact__form" action="{% url 'home:home' %}" method="POST">
+      {% csrf_token %}
+      <div class="contact__fields">
+        <div class="contact__field">
+          <label for="name" class="contact__label">نام</label>
+          <input value="{{user.name}}" type="text" id="name" name="name" class="contact__input" required />
+        </div>
+        <div class="contact__field">
+          <label for="email" class="contact__label">ایمیل</label>
+          <input type="email" value="{{user.email}}" id="email" name="email" class="contact__input" required />
+        </div>
+        <div class="contact__field contact__field--full">
+          <label for="message" class="contact__label">پیام</label>
+          <textarea id="message" name="req_pm" class="contact__textarea" rows="5" required></textarea>
+        </div>
+      </div>
+      <button type="submit" class="contact__button">ارسال پیام</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

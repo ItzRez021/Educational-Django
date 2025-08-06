@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Register Code{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/verify-code.css' %}" />
+  <link rel="stylesheet" href="{% static 'accounts/css/responsive.css' %}">
+  <script defer src="{% static 'accounts/js/verify-code.js' %}"></script>
+         <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-…"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+{% endblock %}
+{% block body %}
+  <section class="verify">
+    <div class="verify__container">
+      {% if mode == "register" %}
+      <h2 class="verify__title">کد تایید را برای ثبت نام وارد کنید</h2>
+      {% elif mode == "changeemail" %}
+      <h2 class="verify__title">کد تایید را برای تغییر ایمیل خود وارد کنید</h2>
+      {% endif %}
+      {% if messages %}
+      {% for msg in messages %}
+      <p class="verify__desc">{{msg}}</p>
+      {% endfor %}
+      {% endif %}
+      <form  method="post" class="verify__form">
+        {% csrf_token %}
+        <div class="verify__inputs">
+          <input type="text" name="code1" maxlength="1" required />
+          <input type="text" name="code2" maxlength="1" required />
+          <input type="text" name="code3" maxlength="1" required />
+          <input type="text" name="code4" maxlength="1" required />
+          <input type="text" name="code5" maxlength="1" required />
+          <input type="text" name="code6" maxlength="1" required />
+        </div>
+        <button type="submit" class="verify__btn">تایید</button>
+      </form>
+
+      {% if user.is_authenticated %}
+      <div class="verify__links">
+        <a href="{% url 'accounts:changeemail' %}">← ویرایش ایمیل</a> |
+        <a href="{% url 'accounts:profile' user.pk %}">بازگشت به پروفایل</a>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+  <script src="{% static 'accounts/js/verify-code.js' %}"></script>
+  <script>setTimeout(() => {
+  window.history.back();
+}, 60000); // 60000 ms = 60 seconds</script>
+{% endblock %}

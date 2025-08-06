@@ -1,0 +1,344 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} پروفایل {{ teach.user.name }}{% endblock %}
+{% block css %}
+    <link
+      href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'accounts/css/teach-profile.css' %}" />
+    <link rel="stylesheet" href="{% static 'accounts/css/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'accounts/css/responsive1.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+           <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-…"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+{% endblock %}
+{% block body %}
+    <section class="coach-profile">
+      <!-- هدر پروفایل -->
+
+      <div class="coach-header">
+        <div
+          class="coach-avatar"
+          id="avatar"
+          style="background-image: url('{{ teach.icon.url }}')"
+          aria-label="تصویر پروفایل {{ teach.name }}"
+          role="img"
+        ></div>
+        <div class="coach-info">
+          <div class="coach-name" id="coachName">{{ teach.name }}</div>
+          <div class="coach-email" id="coachEmail">{{ teach.email }}</div>
+          <div class="coach-phone" id="coachPhone">{% if teach.number %}{{ teach.number }}{% else %}بدون شماره{% endif %}</div>
+        </div>
+        <form action="{% url 'accounts:logout' %}" method="post">
+          {% csrf_token %}
+          <button class="coach-edit-btn" type="submit" aria-label="خروج از حساب">
+            خروج از حساب
+          </button>
+        </form>
+      </div>
+
+      <!-- آمار کلی -->
+      <div class="coach-stats">
+        <div>تعداد دوره‌ها: <strong>{{ teach.course.count }}</strong></div>
+        <div>کل دانشجو: <strong>{{ teach.students }}</strong></div>
+        <div>درآمد کل: <strong>{{ teach.total_income }} تومان</strong></div>
+      </div>
+
+      <!-- تب‌ها -->
+      <div class="coach-tabs">
+        <div class="coach-tab-buttons" role="tablist" aria-label="تب‌های پروفایل">
+          <button class="tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="tab-courses" id="tab-btn-courses" onclick="showCoachTab(0)">
+            مدیریت دوره‌ها
+          </button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-questions" id="tab-btn-questions" onclick="showCoachTab(1)">
+            سوالات دانشجوها
+          </button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-income" id="tab-btn-income" onclick="showCoachTab(2)">آمار درآمد</button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-settings" id="tab-btn-settings" onclick="showCoachTab(3)">
+            تنظیمات اطلاعات
+          </button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="tab-password" id="tab-btn-password" onclick="showCoachTab(4)">
+            تغییر رمز عبور
+          </button>
+        </div>
+
+        <!-- مدیریت دوره‌ها -->
+        <div class="coach-tab-content active" role="tabpanel" aria-labelledby="tab-btn-courses" id="tab-courses">
+          <form
+            class="add-course-form"
+            enctype="multipart/form-data"
+            method="post"
+            action="{% url 'accounts:courseupload' %}"
+            aria-label="فرم افزودن دوره جدید"
+          >
+          {% csrf_token %}
+            <div class="form-group">
+              <label for="courseName">عنوان دوره</label>
+              <input type="text" id="courseName" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="courseInfo">توضیحات دوره</label>
+              <textarea id="courseInfo" rows="3" name="info" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="courseThumbnail">آپلود تامبنیل</label>
+              <input type="file" id="courseThumbnail" name="thumbnail" required />
+            </div>
+            <button type="submit" class="course-add-btn" aria-label="افزودن دوره">
+              <i class="fa fa-plus" aria-hidden="true"></i> افزودن دوره
+            </button>
+          </form>
+          
+          <div>
+            {% if teach.course %}
+            {% for c in teach.course.all %}
+            <div class="coach-course-card" aria-label="دوره {{ c.name }}">
+              <div class="card-title">{{ c.name }}</div>
+              <div>
+                وضعیت: {% if c.status %}منتشر شده{% else %}پیش نمایش{% endif %}
+              </div>
+              <form>
+                <a
+                  class="card-btn edit"
+                  href="{% url 'courses:editcourse' c.id %}"
+                  role="button"
+                  aria-label="ویرایش دوره {{ c.name }}"
+                >
+                  ویرایش
+                </a>
+              </form>
+              <form method="post" action="{% url 'courses:removecourse' c.id %}">
+                {% csrf_token %}
+                <button
+                  class="card-btn delete"
+                  type="submit"
+                  aria-label="حذف دوره {{ c.name }}"
+                >
+                  حذف
+                </button>
+              </form>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="coach-course-card" aria-live="polite">
+              <div class="card-title">شما دوره ای بارگذاری نکرده اید</div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- سوالات دانشجوها -->
+        <div class="coach-tab-content" role="tabpanel" aria-labelledby="tab-btn-questions" id="tab-questions" hidden>
+        {% if teach.respond %}
+        <form
+          id="questionsFilterForm"
+          class="coach-questions-filter"
+          method="get"
+          aria-label="فیلتر سوالات"
+          onsubmit="addTabParam(event)"
+        >
+          <label for="questionFilter">نمایش:</label>
+          <select
+            id="questionFilter"
+            name="filter"
+            onchange="this.form.submit()"
+            aria-describedby="filterDescription"
+          >
+            <option value="all" {% if request.GET.filter == 'all' or not request.GET.filter %}selected{% endif %}>همه</option>
+            <option value="unanswered" {% if request.GET.filter == 'unanswered' %}selected{% endif %}>بدون پاسخ</option>
+            <option value="answered" {% if request.GET.filter == 'answered' %}selected{% endif %}>پاسخ‌داده‌شده</option>
+          </select>
+          
+          <div id="filterDescription" class="visually-hidden">فیلتر سوالات بر اساس وضعیت پاسخ</div>
+          {% elif teach.course %}
+          <div id="filterDescription" class="visually-hidden">شما کامنتی برای دوره هایتان ندارید</div>
+          {% else %}
+          <div id="filterDescription" class="visually-hidden">شما دوره ای بارگذاری نکرده اید</div>
+          {% endif %}
+        </form>
+
+        <script>
+          function addTabParam(e) {
+            // قبل از ارسال فرم، پارامتر tab=questions رو اضافه کن به URL
+            e.preventDefault(); // جلوگیری از ارسال پیش‌فرض
+
+            const form = e.target;
+            const url = new URL(window.location.href);
+            const formData = new FormData(form);
+
+            // مقدار فیلتر انتخاب شده
+            const filterValue = formData.get('filter') || 'all';
+
+            // آپدیت url سرچ پارامترها
+            url.searchParams.set('filter', filterValue);
+            url.searchParams.set('tab', 'questions');
+
+            // به آدرس جدید هدایت شو
+            window.location.href = url.toString();
+          }
+
+          // همچنین onchange فرم مستقیما ارسال می‌کند، پس اون رو هم اصلاح کن:
+          document.getElementById('questionFilter').addEventListener('change', function() {
+            const form = this.form;
+            const url = new URL(window.location.href);
+            url.searchParams.set('filter', this.value);
+            url.searchParams.set('tab', 'questions');
+            window.location.href = url.toString();
+          });
+        </script>
+
+            {% csrf_token %}
+            <div id="coachQuestions">
+            {% for item in comments %}
+              <div class="coach-question-card {% if item.answered %}answered{% else %}unanswered{% endif %}" aria-live="polite">
+                <div class="card-title">دوره {{ item.course_name }} / {{ item.video_name }}</div>
+                <div>سوال: {{ item.comment_text }}</div>
+                <form id="questionsListForm" method="post" action="{% url 'courses:teacherrespond' item.id %}" aria-label="لیست سوالات دانشجویان">
+                  {% csrf_token %}
+                  {% if not item.answered %}
+                <textarea name="comment" placeholder="پاسخ خود را بنویسید" aria-label="پاسخ به سوال"></textarea>
+                <button class="card-btn answer" type="submit" aria-label="ارسال پاسخ به سوال">ارسال پاسخ</button>
+                  {% else %}
+                    <div>پاسخ: {{ item.res|default:"بدون پاسخ" }}
+                  {% endif %}
+                </form>
+              </div>
+            {% endfor %}
+              </div>
+            </div>
+        </div>
+
+
+        <!-- آمار درآمد -->
+        <div class="coach-tab-content" role="tabpanel" aria-labelledby="tab-btn-income" id="tab-income" hidden>
+          <div class="coach-stats-list" aria-label="آمار درآمد">
+            {% if teach.course.all.count %}
+            {% for c in teach.course.all %}
+            <div>درآمد کلی: <strong>{{ teach.total_income }} تومان</strong></div>
+            <div>درآمد دوره {{ c.name }}: <strong>{{ c.total_income }} تومان</strong></div>
+            {% endfor %}
+            {% else %}
+            <div><strong>شما دوره ای بارگذاری نکرده اید</strong></div>
+            {% endif %}
+          </div>
+          <form id="payoutForm" onsubmit="requestPayout(event)" aria-label="درخواست برداشت وجه">
+            <button class="income-btn" type="submit" aria-label="درخواست برداشت وجه">درخواست برداشت وجه</button>
+          </form>
+        </div>
+
+        <!-- تنظیمات اطلاعات شخصی -->
+        <div class="coach-tab-content" role="tabpanel" aria-labelledby="tab-btn-settings" id="tab-settings" hidden>
+          <form
+            class="coach-settings-form"
+            method="post"
+            action="{% url 'accounts:teacherchangeprofile' %}"
+            enctype="multipart/form-data"
+            aria-label="تنظیمات اطلاعات شخصی"
+          >
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="teacherName">نام</label>
+              <input type="text" id="teacherName" name="name" value="{{ teach.name }}" required />
+            </div>
+            <div class="form-group">
+              <label for="teacherEmail">ایمیل</label>
+              <input
+                type="email"
+                id="teacherEmail"
+                value="{{ teach.email }}"
+                name="email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="teacherNumber">شماره تماس</label>
+              <input
+                type="text"
+                id="teacherNumber"
+                name="number"
+                value="{% if teach.number %}{{ teach.number }}{% else %}{% endif %}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="teacherIcon">عکس پروفایل</label>
+              <input
+                type="file"
+                accept="image/*"
+                id="teacherIcon"
+                name="icon"
+              />
+            </div>
+            <button type="submit" class="settings-save-btn" aria-label="ذخیره تغییرات">
+              ذخیره تغییرات
+            </button>
+          </form>
+        </div>
+
+        <!-- تغییر رمز عبور -->
+        <div class="coach-tab-content" role="tabpanel" aria-labelledby="tab-btn-password" id="tab-password" hidden>
+          <form
+            class="coach-password-form"
+            method="post"
+            action="{% url 'accounts:changepass' %}"
+            aria-label="فرم تغییر رمز عبور"
+          >
+          {% csrf_token %}
+            <div class="form-group">
+              <label for="currentPassword">رمز فعلی</label>
+              <input
+                type="password"
+                id="currentPassword"
+                name="old_password"
+                placeholder="رمز فعلی"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="newPassword1">رمز جدید</label>
+              <input
+                type="password"
+                id="newPassword1"
+                name="new_password1"
+                placeholder="رمز جدید"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="newPassword2">تکرار رمز جدید</label>
+              <input
+                type="password"
+                id="newPassword2"
+                name="new_password2"
+                placeholder="تکرار رمز جدید"
+                required
+              />
+            </div>
+            <button type="submit" class="settings-save-btn" aria-label="تغییر رمز عبور">
+              تغییر رمز عبور
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <script defer src="{% static 'accounts/js/teach-profile.js' %}"></script>
+    <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tabParam = urlParams.get('tab');
+    if (tabParam === 'questions') {
+      console.log("Activating Questions Tab");
+      showCoachTab(1);
+    }
+  });
+</script>
+
+{% endblock %}

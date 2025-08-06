@@ -1,0 +1,274 @@
+    body {
+        font-family: 'Lalezar', cursive;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .profile {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .profile__header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+    }
+
+    .profile__avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: #ddd;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .profile__info {
+      flex: 1;
+    }
+
+    .profile__name {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .profile__email {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .profile__edit-button {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+
+    .profile__stats {
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .profile__stat {
+      flex: 1;
+      background-color: #fff;
+      padding: 1rem;
+      text-align: center;
+      border-radius: 1rem;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .profile__tabs {
+      background-color: #fff;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .profile__tab-buttons {
+      display: flex;
+      border-bottom: 1px solid #eee;
+    }
+
+    .profile__tab-button {
+      flex: 1;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      background-color: #fff;
+      border: none;
+      font-weight: bold;
+    }
+
+    .profile__tab-button--active {
+      background-color: #f0f0f0;
+    }
+
+    .profile__tab-content {
+      display: none;
+      padding: 1.5rem;
+    }
+
+    .profile__tab-content--active {
+      display: block;
+    }
+
+    .course-card,
+    .wishlist-card {
+      background-color: #fdfdfd;
+      border: 1px solid #e0e0e0;
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .course-card__title,
+    .wishlist-card__title {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .course-card__progress {
+      width: 100%;
+      height: 8px;
+      background-color: #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .course-card__progress-bar {
+      width: 60%;
+      height: 100%;
+      background-color: #0077cc;
+    }
+
+    .course-card__button,
+    .wishlist-card__button {
+      background-color: #0077cc;
+      color: #fff;
+      text-decoration: none;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .settings__group {
+      margin-bottom: 1rem;
+    }
+
+    .settings__label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+    }
+
+    .settings__input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+    }
+
+    .settings__button {
+      background-color: crimson;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+
+    .settings__button--secondary {
+      background-color: #666;
+    }
+
+    .wishlist-card__image {
+      width: 80px;
+      height: 60px;
+      background-color: #ccc;
+      border-radius: 0.5rem;
+      background-size: cover;
+      background-position: center;
+    }
+
+.notification {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff5f5;
+  color: #d32f2f;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  display: none;
+  align-items: center;
+  gap: 12px;
+  z-index: 9999;
+  min-width: 280px;
+  max-width: 90%;
+  border: 1px solid #f8c0c0;
+  animation: fadeSlideDown 0.5s ease forwards;
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.notification__icon i {
+  font-size: 24px;
+}
+
+.notification__content {
+  flex-grow: 1;
+}
+
+.notification__title {
+  font-weight: bold;
+  margin: 0;
+  font-size: 16px;
+}
+
+.notification__text {
+  margin: 4px 0 0;
+  font-size: 14px;
+}
+
+.notification__close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.notification--error {
+  background-color: #fff5f5;
+  color: #d32f2f;
+  border-color: #f8c0c0;
+}
+
+.notification--error .notification__icon i,
+.notification--error .notification__close {
+  color: #d32f2f;
+}
+
+.notification--success {
+  background-color: #e6f4ea;
+  color: #388e3c;
+  border-color: #b7dfc7;
+}
+
+.notification--success .notification__icon i,
+.notification--success .notification__close {
+  color: #388e3c;
+}
+
+

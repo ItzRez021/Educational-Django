@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load duration_filters %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'courses/css/packages.css' %}">
+  <link rel="stylesheet" href="{% static 'courses/css/responsive.css' %}" />
+  <link rel="stylesheet" href="{% static 'courses/css/reset.css' %}">
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v33.003/Vazir-font-face.css" rel="stylesheet" />
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-…"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+{% endblock %}
+{% block body %}      
+  </header>
+    <!-- PAGE HERO -->
+    <section class="page-header">
+      <h1>دوره ها</h1>
+      <nav class="breadcrumb">
+        <a class="page-header__index" href="{% url 'home:home' %}">خانه</a>
+        <span>/</span>
+        <a class="breadcrumb__contact" href="{% url 'courses:allcourses' %}">دوره ها</a>
+      </nav>
+    </section>
+
+ <section class="popular">
+    <h2 class="popular__title">دوره‌های محبوب را پیدا کنید</h2>
+    <div class="popular__list">
+      {% for c in Co %}
+      <a href="{% url 'courses:coursedetail' c.pk %}" class="popular__card">
+        <img src="{{ c.thumbnail.url }}" alt="Course" class="popular__img" />
+        <div class="popular__info">
+            <div class="popular__header">
+              {% if c.discount %}
+                <p class="popular__price popular__price--off">{{c.price}} تومان</p>
+                <p class=" popular__offer">{{ c.total_price }} تومان</p>
+              {% else %}
+                <p class="popular__price popular__price--on">{{c.total_price}} تومان</p>
+              {% endif %}
+            </div>
+          <p class="popular__name">{{ c.name }}</p>
+          <div class="popular__meta">
+            <span>مجموع ساعات این دوره {{ c.total_hours|duration_from_hours }} می‌باشد</span><br> <br>
+            <span> تعداد هنرجویان : {{c.students.count}} </span>
+          </div>
+          <div class="popular__footer">
+            <span class="popular__teacher">{{ c.teacher.name }}</span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+<section class="subscribe-section">
+  <div class="subscribe-container">
+    <div class="subscribe-text">
+      <p class="subscribe-subtitle">آیا تحت تاثیر خدمات شگفت‌انگیز هستید؟</p>
+      <h2 class="subscribe-title">مشترک خبرنامه ما شوید</h2>
+    </div>
+    <form class="subscribe-form" action="{% url 'courses:allcourses' %}" method="post">
+      {% csrf_token %}
+      <input type="email" name="email" placeholder="آدرس ایمیل شما" required>
+      <button type="submit">مشترک شدن</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

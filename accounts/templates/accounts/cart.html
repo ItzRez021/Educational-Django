@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/cart.css' %}">
+  <link rel="stylesheet" href="{% static 'accounts/css/responsive.css' %}" />
+  <link rel="stylesheet" href="{% static 'accounts/css/reset.css' %}">
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v33.003/Vazir-font-face.css" rel="stylesheet" />
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-…"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+{% endblock %}
+{% block body %}
+  <div class="cart-container">
+    {% if ca %}
+    <div class="cart-summary">
+      <h3>خلاصه سفارش</h3>
+      <p>زیر مجموعه: {{ ca.total_base_price }} تومان</p>
+      <p>تخفیف: {{ ca.total_discount }} تومان</p>
+      <hr>
+      <p><strong>مجموع: {{ ca.total_prices }} تومان</strong></p>
+      <a href="{% url 'courses:signcourse' ca.cartitem.first.course.pk %}" class="pay-btn">صفحه پرداخت</a>
+    </div>
+
+    <!-- Cart Table -->
+    {% for c in ca.cartitem.all %}
+    <div class="cart-table">
+      <table>
+        <thead>
+          <tr>
+            <th>دوره</th>
+            <th>نام دوره</th>
+            <th>قیمت واحد</th>
+            <th>مجموع کل</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img src="{{ c.course.thumbnail.url }}" alt="{{ c.course.name }}"></td>
+            <td>{{ c.course.name }}</td>
+            <td>{{ c.course.price }} تومان</td>
+            <td>{{ c.course.total_price }} تومان</td>
+            <td><a href="{% url 'courses:addtocartcourse' c.course.pk %}"><i class="delete-btn fa-solid fa-trash"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="action-btns">
+        <a href="{% url 'accounts:cart' request.user.cart.pk %}">بروزرسانی سبد خرید</a>
+        <a href="{% url 'courses:allcourses' %}">افزودن دوره جدید</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <h1>محصولی دریافت نشد</h1>
+  {% endif %}
+{% endblock %}

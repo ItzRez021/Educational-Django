@@ -1,0 +1,196 @@
+
+body{
+     font-family: 'Lalezar', cursive;direction: rtl;color:#333;line-height:1.6
+}
+
+
+
+
+/* =============== HEADER (منوی بالای صفحه) =============== */
+.header {
+  background: #fff;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.header__container {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__logo {
+   text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: #0056b3;
+}
+.header__nav {
+  display: flex;
+}
+.header__menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+.header__link {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+.header__link--active {
+  font-weight: bold;
+  color: #0056b3;
+}
+.header__icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header__search {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.header__register {
+  background: #e92d2e;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.header__burger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 20px;
+}
+.hero__search {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.search-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #333;
+  padding: 0.5rem;
+}
+
+/* =============== PAGE HEADER =============== */
+.page-header {
+  position: relative;
+  background: url("../img/rules.png") center/cover no-repeat;
+
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+.page-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(71, 71, 148, 0.6);
+}
+.page-header h1 {
+  position: relative;
+  font-size: 36px;
+  margin: 0;
+  font-weight: 600;
+}
+.breadcrumb {
+  position: relative;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.page-header__index {
+  color: #ccc;
+  text-decoration: none;
+  margin: 0 5px;
+}
+.breadcrumb__contact {
+  margin: 0 5px;
+  text-decoration: none;
+  color: #59bfff;
+}
+
+
+       /* RULLS TEXT */
+
+
+.rulls {
+  direction: rtl;
+  color: #333;
+  padding: 40px 0;       
+  background: #fff;      
+}
+
+
+.rulls__sub {
+  font-size: 16px;
+  color: #59bfff;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.rulls__title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #2c3165;
+  text-align: center;
+  margin: 0 0 40px;
+}
+
+
+.rulls-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 15px 60px;
+}
+
+
+.rulls__text-title {
+  font-size: 28px;
+  color: #0056b3;
+  font-weight: 600;
+  margin: 40px 0 16px;
+}
+
+.rulls__text {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .rulls__sub {
+    font-size: 14px;
+  }
+  .rulls__title {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+  .rulls-container {
+    padding: 0 15px 40px;
+  }
+  .rulls__text-title {
+    font-size: 24px;
+    margin: 30px 0 12px;
+  }
+  .rulls__text {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+}

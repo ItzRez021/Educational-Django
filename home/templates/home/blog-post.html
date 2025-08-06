@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block title %}{{ blog.first_intro }}{% endblock %}
+{% block css %}
+  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet">
+   <link rel="stylesheet" href="{% static 'home/css/blog-post.css' %}">
+  <link rel="stylesheet" href="{% static 'home/css/responsive.css' %}" />
+  <link rel="stylesheet" href="{% static 'home/css/reset.css' %}">
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v33.003/Vazir-font-face.css" rel="stylesheet" />
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-…"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+{% endblock %}
+{% block body %}
+  <div class="container">
+    <div class="post-header">
+      <h1>{{ blog.first_intro }}</h1>
+      <div class="post-meta">تاریخ : {{ blog.created }} | نویسنده : {{ blog.user.name }}</div>
+    </div>
+    <img class="post-image" src="{{ blog.icon.url }}" alt="تصویر مقاله" />
+
+    <div class="post-content">
+      {% if blog.introduction %}
+        <p>{{ blog.introduction }}</p>
+      {% endif %}
+
+    {% with first_titleinfo=blog.blogtitleinfo_set.first %}
+      {% if first_titleinfo %}
+        <h2>{{ first_titleinfo.title }}</h2>
+        <p>{{ first_titleinfo.info }}</p>
+      {% endif %}
+    {% endwith %}
+
+      {% if blog.slogan %}
+      <blockquote>{{ blog.slogan }}</blockquote>
+      {% endif %}
+
+    {% for ti in blog.blogtitleinfo_set.all %}
+      <h2>{{ ti.title }}</h2>
+      <p>{{ ti.info }}</p>
+    {% endfor %}
+
+    <div class="tags">
+      {% for tag in blog.tags.all %}
+        <span>#{{ tag.tag }}</span>
+      {% endfor %}
+    </div>
+
+      <a href="{% url 'home:blog' %}" class="back-link">⬅ بازگشت به لیست مقالات</a>
+    </div>
+  </div>
+{% endblock %}

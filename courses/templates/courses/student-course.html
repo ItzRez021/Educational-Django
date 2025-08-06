@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load duration_filters %}
+
+{% block title %}{{ co.name }}{% endblock %}
+
+{% block css %}
+  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'courses/css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'courses/css/responsive.css' %}">
+  <link rel="stylesheet" href="{% static 'courses/css/student-course.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v33.003/Vazir-font-face.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+{% endblock %}
+
+{% block body %}
+<div class="header">
+  <h2>{{ co.name }}</h2>
+  <div class="header__profile">
+    <a href="{% url 'accounts:profile' user.pk %}">
+      <img src="{{ user.profile.icon.url }}" alt="پروفایل">
+    </a>
+  </div>
+</div>
+
+<div class="container">
+  <aside class="sidebar">
+    {% for chapter in co.titles.all %}
+      <div class="chapter">
+        <h3 style="font-size: xx-large;">{{ forloop.counter }}. {{ chapter.title }}</h3>
+        {% for video in chapter.videos.all %}
+          <div class="episode{% if video.id == current_video.id %} active{% endif %}">
+            <a style="text-decoration: none; color: black;" href="{% url 'courses:watch_course_video' id=co.id video_id=video.id %}">
+              {{ video.name|default:"جلسه بدون عنوان" }}
+              <span style="font-size: small;">  -  {{ video.duration|duration_hm }}</span>
+            </a>
+          </div>
+        {% empty %}
+          <div class="episode">ویدیویی در این فصل موجود نیست.</div>
+        {% endfor %}
+      </div>
+    {% empty %}
+      <p>هیچ فصلی برای این دوره ثبت نشده است.</p>
+    {% endfor %}
+  </aside>
+
+  <main class="main">
+    <div class="video-section">
+      {% if current_video %}
+        <video controls preload="metadata" src="{{ current_video.video.url }}"></video>
+        <div class="next-episode">
+          {% if next_video %}
+            <p><i class="icon icon-video"></i> جلسه بعدی: {{ next_video.name }}</p>
+            <a href="{% url 'courses:watch_course_video' id=co.id video_id=next_video.id %}">
+              <button>رفتن به جلسه بعد</button>
+            </a>
+          {% else %}
+            <p>این ویدیوی آخر دوره است.</p>
+          {% endif %}
+          <div class="completed">➜ تکمیل شد؟</div>
+        </div>
+      {% else %}
+        <p>ویدیویی برای نمایش وجود ندارد.</p>
+      {% endif %}
+      <div class="back-to-dashboard">
+        <a href="{% url 'accounts:profile' user.pk %}">⬅ بازگشت به داشبورد</a>
+      </div>
+    </div>
+
+    <div class="questions">
+      <h3 style="font-size: xx-large;">پرسش و پاسخ این جلسه</h3><br>
+      {% if current_video %}
+      {% for cm in current_video.comment.all %}
+      <div class="question">
+        <strong>{{cm.user.name}} : </strong>
+        {{cm.comment}}
+        {% if cm.respond %}
+                <br><br><strong>{{cm.respond.teacher.name}} : </strong>
+        {{cm.respond.comment}}
+        {% endif %}
+      </div>
+      {% endfor %}
+      {% endif %}
+      <form method="post" action="{% url 'courses:watch_course_video' id=co.id video_id=current_video.id %}">
+        {% csrf_token %}
+        <label for="q">سوال خود را بپرسید:</label>
+        <textarea id="q" name="comment" rows="3" placeholder="اینجا بنویس..."></textarea>
+        <button type="submit">ارسال سوال</button>
+      </form>
+    </div>
+  </main>
+</div>
+{% endblock %}

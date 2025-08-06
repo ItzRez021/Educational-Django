@@ -1,0 +1,480 @@
+/* =============== HEADER (منوی بالای صفحه) =============== */
+.header {
+    background: #fff;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.header__container {
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header__logo {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0056b3;
+}
+.header__nav {
+    display: flex;
+}
+.header__menu {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+.header__link {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+.header__link--active {
+    font-weight: bold;
+    color: #0056b3;
+}
+.header__icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.header__search {
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.header__register {
+    background: #e92d2e;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.header__burger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 20px;
+}
+.hero__search {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.search-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #333;
+    padding: 0.5rem;
+}
+
+/* =============== PAGE HEADER (بخش کاور) =============== */
+.page-header {
+    position: relative;
+    background: url("#") center/cover no-repeat;
+
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+.page-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(71, 71, 148, 0.6);
+}
+.page-header h1 {
+    position: relative;
+    font-size: 36px;
+    margin: 0;
+    font-weight: 700;
+}
+.breadcrumb {
+    position: relative;
+    margin-top: 10px;
+    font-size: 14px;
+}
+.page-header__index {
+    color: #ccc;
+    text-decoration: none;
+    margin: 0 5px;
+}
+.breadcrumb__contact {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #59bfff;
+}
+
+/* these are the titles of every parts just because they have same style :| */
+.checkout__billing-title,
+.checkout__total-title,
+.checkout__methode-title {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 28px;
+    color: #21225f;
+}
+
+/************** CHECKOUT AREA SECTION ***************/
+.checkout {
+    padding: 80px 0;
+    margin: 0 5%;
+    display: flex;
+}
+.checkout__container {
+    padding: 0 10px;
+}
+
+/*** question for login part***/
+.checkout__user {
+    font-size: 18px;
+    margin: 0 0 30px;
+    padding: 16px 32px;
+    border-radius: 6px;
+    border-right: 2px solid #59bfff;
+    box-shadow: 0 5px 28px rgba(0, 0, 0, 0.07);
+}
+.checkout__user a {
+    text-decoration: none;
+    color: #08a9e6;
+}
+
+/*** the billing's detail part ***/
+.checout__billing--display-flex {
+    display: flex;
+}
+.checkout__billing-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    box-shadow: 0 5px 28px rgba(0, 0, 0, 0.07);
+    padding: 42px 32px;
+    border-radius: 6px;
+    color: #21225f;
+    width: 65%;
+}
+.checkout__billing-form-group {
+    display: flex;
+    flex-direction: column;
+}
+.checkout__billing-form-group--2-cols {
+    grid-column: 1/-1;
+}
+.checkout__billing-form-group label {
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #21225f;
+}
+.checkout__billing-form-group input {
+    display: flex;
+    padding: 14px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    color: #555;
+    background-color: #f9f8f8;
+    transition: all 0.3s;
+}
+.requierd {
+    color: #08a9e6;
+}
+.checkout__billing-form input:focus {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}
+.checkout__billing-form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    grid-column: 1/-1;
+}
+.checkout__billing-form-checkbox--align-top {
+    transform: translateY(-15px);
+}
+.checkout__billing-form-checkbox label {
+    font-size: 16px;
+    color: #21225f;
+}
+.checkout__billing-form-checkbox input {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    appearance: none;
+    cursor: pointer;
+}
+.checkout__billing-form-checkbox input[type="checkbox"]:checked,
+.checkout__billing-form-checkbox input[type="checkbox"]:checked:focus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    background-image: url(/img/icons8-checkmark-24.png);
+    background-size: 16px;
+    background-position: center;
+    box-shadow: 0 0 0 3px rgb(8, 169, 230, 0.2);
+}
+.checkout__billing-form-note {
+    font-family: inherit;
+    border: none;
+    outline: none;
+    background-color: #f9f8f8;
+    padding: 10px;
+    margin-bottom: 30px;
+    height: 150px;
+}
+
+/*** the sidebbar part ***/
+/* container2 is for the sorting with display flex */
+.checkout__container2 {
+    width: 35%;
+    padding: 0 20px;
+}
+.checkout__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* total of the payment part */
+.checkout__total {
+    box-shadow: 0 5px 28px rgba(0, 0, 0, 0.07);
+    padding: 30px 30px 40px;
+}
+.checkout__total ul {
+    display: flex;
+    flex-direction: column;
+}
+.checkout__total li {
+    font-size: 16px;
+    color: #555;
+    padding: 10px 12px;
+    font-weight: 600;
+}
+.checkout__total-item--border-bottom {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+.checkout__total span {
+    color: #21225f;
+    font-weight: 700;
+}
+
+/* the how to pay (I thnik? :/ ) part  */
+.checkout__methode {
+    padding: 40px 30px;
+    border-radius: 6px;
+    box-shadow: 0 5px 28px rgba(0, 0, 0, 0.07);
+}
+.checkout__methode-text-box input[type="checkbox"]:checked,
+.checkout__methode-text-box input[type="checkbox"]:checked:focus {
+    background-color: #08a9e6;
+    box-shadow: inset 0 0 0 2px #fff;
+}
+.checkout__methode-text-box label {
+    font-size: 16px;
+    color: #21225f;
+    font-weight: 600;
+}
+.checkout__methode-text-box p {
+    font-size: 16px;
+    color: #555;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+.checkout__methode-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+.checkout__methode-text-box input {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    appearance: none;
+    cursor: pointer;
+}
+.checkout__methode-btn-container {
+    display: flex;
+}
+.checkout__methode-btn {
+    font-family: inherit;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 18px;
+    padding: 15px 35px;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    background-color: #08a9e6;
+    transition: background 0.3s;
+}
+.checkout__methode-btn:hover {
+    background-color: #008fd1;
+}
+
+/* ======= بخش مشترک خبرنامه ======= */
+.subscribe-section {
+    background: #f2f5fa;
+    padding: 60px 15px;
+}
+.subscribe-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.subscribe-text {
+    text-align: right;
+}
+.subscribe-subtitle {
+    color: #59bfff;
+    font-size: 14px;
+    margin: 0;
+}
+.subscribe-title {
+    color: #2c3165;
+    font-size: 28px;
+    margin: 8px 0 0;
+    line-height: 1.2;
+}
+
+/* subscribe form*/
+.subscribe-form {
+    display: flex;
+    background: #fff;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.subscribe-form input {
+    border: none;
+    padding: 0 20px;
+    font-size: 16px;
+    height: 50px;
+    outline: none;
+}
+.subscribe-form input::placeholder {
+    color: #999;
+}
+.subscribe-form button {
+    background: #00b0ff;
+    color: #fff;
+    border: none;
+    padding: 0 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.subscribe-form button:hover {
+    background: #008fd1;
+}
+
+/* footer.css */
+.footer {
+    background-color: #0727b4;
+    color: #ccc;
+    padding: 60px 0 30px;
+    direction: rtl;
+}
+
+.footer__top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.footer__column {
+    flex: 1 1 250px;
+    min-width: 200px;
+}
+
+.footer__logo {
+    font-size: 28px;
+    color: #007bff;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.footer__text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #aaa;
+}
+
+.footer__title {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.footer__menu,
+.footer__social {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer__link,
+.footer__social-link {
+    display: block;
+    font-size: 15px;
+    color: #ccc;
+    margin-bottom: 10px;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer__link:hover,
+.footer__social-link:hover {
+    color: #007bff;
+}
+
+.footer__bottom {
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.footer__copyright {
+    font-size: 14px;
+    color: #777;
+}
+
+.checkout__methode-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.checkout__methode-checkbox input[type="radio"] {
+  appearance: auto; /* Ensure browser default is used */
+  width: 18px;
+  height: 18px;
+  accent-color: #007bff; /* Optional: blue color */
+}
+

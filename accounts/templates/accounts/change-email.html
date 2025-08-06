@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}تغییر ایمیل {{user.name}}{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'accounts/css/change-email.css' %}" />
+  <link rel="stylesheet" href="{% static 'accounts/css/responsive.css' %}" />
+  <link rel="stylesheet" href="{% static 'accounts/css/reset.css' %}">
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v33.003/Vazir-font-face.css" rel="stylesheet" />
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-…"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+{% endblock %}
+{% block body %}
+  <section class="change-email">
+    <div class="change-email__container">
+      {% if form.email.errors %}
+      {% for msg in form.email.errors %}
+      <h2 class="change-email__title">{{msg}}</h2>
+      {% endfor %}
+      {% else %}
+      <h2 class="change-email__title">تغییر ایمیل</h2>
+      {% endif %}
+      <form action="{% url 'accounts:changeemail' %}" method="post" class="change-email__form">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="ایمیل جدید خود را وارد کنید" required class="change-email__input" />
+        <button type="submit" class="change-email__btn">ارسال کد تایید</button>
+      </form>
+    </div>
+  </section>
+
+{% endblock %}

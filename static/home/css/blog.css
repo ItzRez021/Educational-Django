@@ -1,0 +1,384 @@
+/* =============== HEADER (منوی بالای صفحه) =============== */
+.header {
+  background: #fff;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.header__container {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__logo {
+   text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: #0056b3;
+}
+.header__nav {
+  display: flex;
+}
+.header__menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+.header__link {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+.header__link--active {
+  font-weight: bold;
+  color: #0056b3;
+}
+.header__icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header__search {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.header__register {
+  background: #e92d2e;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.header__burger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 20px;
+}
+.hero__search {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.search-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #333;
+  padding: 0.5rem;
+}
+
+/* =============== PAGE HEADER (بخش کاور) =============== */
+.page-header {
+  position: relative;
+  background: url("../img/contact-to-us.png") center/cover no-repeat;
+
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+.page-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(71, 71, 148, 0.6);
+}
+.page-header h1 {
+  position: relative;
+  font-size: 36px;
+  margin: 0;
+  font-weight: 600;
+}
+.breadcrumb {
+  position: relative;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.page-header__index {
+  color: #ccc;
+  text-decoration: none;
+  margin: 0 5px;
+}
+.breadcrumb__contact {
+  margin: 0 5px;
+  text-decoration: none;
+  color: #59bfff;
+}
+
+
+/* blog.css */
+.blog {
+  padding: 80px 0;
+  background-color: #f9f9f9;
+  direction: rtl;
+}
+
+.blog__header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.blog__title {
+  font-size: 32px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #222;
+}
+
+.blog__subtitle {
+  font-size: 18px;
+  color: #666;
+}
+
+.blog__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+}
+
+.blog__item {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+  height:39rem;
+}
+
+.blog__item:hover {
+  transform: translateY(-5px);
+}
+
+.blog__image-wrapper {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.blog__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.blog__content {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog__date {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.blog__item-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.blog__text {
+  font-size: 16px;
+  color: #555;
+  flex-grow: 1;
+  margin-bottom: 15px;
+}
+
+.blog__link {
+  align-self: flex-start;
+  font-size: 15px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.blog__link:hover {
+  color: #0056b3;
+}
+
+.blog__form {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.blog__button {
+  font-size: 16px;
+  padding: 12px 32px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.blog__button:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ======= بخش مشترک خبرنامه ======= */
+.subscribe-section {
+  background: #f2f5fa;
+  padding: 60px 15px;
+}
+.subscribe-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.subscribe-text {
+  text-align: right;
+}
+.subscribe-subtitle {
+  color: #59bfff;
+  font-size: 14px;
+  margin: 0;
+}
+.subscribe-title {
+  color: #2c3165;
+  font-size: 28px;
+  margin: 8px 0 0;
+  line-height: 1.2;
+}
+
+/* subscribe form*/
+.subscribe-form {
+  display: flex;
+  background: #fff;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.subscribe-form input {
+  border: none;
+  padding: 0 20px;
+  font-size: 16px;
+  height: 50px;
+  outline: none;
+}
+.subscribe-form input::placeholder {
+  color: #999;
+}
+.subscribe-form button {
+  background: #00b0ff;
+  color: #fff;
+  border: none;
+  padding: 0 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.subscribe-form button:hover {
+  background: #008fd1;
+}
+
+
+/* footer.css */
+.footer {
+  background-color: #0727b4;
+  color: #ccc;
+  padding: 60px 0 30px;
+  direction: rtl;
+}
+
+.footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.footer__column {
+  flex: 1 1 250px;
+  min-width: 200px;
+}
+
+.footer__logo {
+  font-size: 28px;
+  color: #007bff;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.footer__text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #aaa;
+}
+
+.footer__title {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.footer__menu,
+.footer__social {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__link,
+.footer__social-link {
+  display: block;
+  font-size: 15px;
+  color: #ccc;
+  margin-bottom: 10px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__link:hover,
+.footer__social-link:hover {
+  color: #007bff;
+}
+
+.footer__bottom {
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.footer__copyright {
+  font-size: 14px;
+  color: #777;
+}
+

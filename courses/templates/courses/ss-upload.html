@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}آپلود فصل در دوره {{ co.name }}{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'courses/css/ss-upload.css' %}" />
+{% endblock %}
+{% block body %}
+    <div class="chapter-form">
+      <h2>افزودن فصل جدید</h2>
+
+      <form method="post" action="{% url 'courses:uploadtitle' co.id %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="static-label">دوره: <strong>{{ co.name }}</strong></label>
+        </div>
+        <div class="form-group">
+          <label for="chapter-title">نام فصل:</label>
+          <input
+            type="text"
+            id="chapter-title"
+            name="title"
+            placeholder="مثلاً معرفی HTML"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="chapter-description">توضیحات فصل:</label>
+          <textarea
+            id="chapter-description"
+            name="info"
+            rows="4"
+            placeholder="توضیح کوتاه در مورد فصل جدید..."
+          ></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">ثبت فصل</button>
+        <a href="{% url 'courses:editcourse' co.id %}" class="back-link">⬅ بازگشت </a>
+      </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,234 @@
+
+
+
+
+/* =============== HEADER (منوی بالای صفحه) =============== */
+.header {
+  background: #fff;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.header__container {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__logo {
+   text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: #0056b3;
+}
+.header__nav {
+  display: flex;
+}
+.header__menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+.header__link {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+.header__link--active {
+  font-weight: bold;
+  color: #0056b3;
+}
+.header__icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header__search {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.header__register {
+  background: #e92d2e;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.header__burger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 20px;
+}
+.hero__search {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.search-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #333;
+  padding: 0.5rem;
+}
+
+
+/* cart.css */
+
+     body {
+        font-family: 'Lalezar', cursive;
+      background: #fff;
+      margin: 0;
+      color: #1e1e1e;
+    }
+    .cart-container {
+      display: flex;
+      margin-top: 5rem;
+      margin-bottom: 5rem;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .cart-summary {
+      width: 25%;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      padding: 2rem;
+    }
+    .cart-summary h3 {
+      font-size: 1.5rem;
+      color: #14145c;
+      margin-bottom: 1.5rem;
+    }
+    .cart-summary p {
+      margin: 0.5rem 0;
+    }
+    .cart-summary .pay-btn {
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: #00b4f1;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .cart-table {
+      width: 70%;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    th {
+      background: #f4f7fd;
+      font-weight: bold;
+    }
+    img {
+      width: 80px;
+      border-radius: 8px;
+    }
+    .delete-btn {
+      color: #555;
+      cursor: pointer;
+    }
+    .action-btns {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .action-btns a{
+      padding: 0.75rem 2rem;
+      background: #00b4f1;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* footer.css */
+.footer {
+  background-color: #0727b4;
+  color: #ccc;
+  padding: 60px 0 30px;
+  direction: rtl;
+}
+
+.footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.footer__column {
+  flex: 1 1 250px;
+  min-width: 200px;
+}
+
+.footer__logo {
+  font-size: 28px;
+  color: #007bff;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.footer__text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #aaa;
+}
+
+.footer__title {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.footer__menu,
+.footer__social {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__link,
+.footer__social-link {
+  display: block;
+  font-size: 15px;
+  color: #ccc;
+  margin-bottom: 10px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__link:hover,
+.footer__social-link:hover {
+  color: #007bff;
+}
+
+.footer__bottom {
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.footer__copyright {
+  font-size: 14px;
+  color: #777;
+}

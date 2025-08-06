@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}آپلود ویدیو برای دور {{ co.name }}{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'courses/css/video-upload.css' %}" />
+{% endblock %}
+{% block body %}
+    <div class="episode-form">
+      <h2>افزودن قسمت جدید</h2>
+
+      <form method="post" enctype="multipart/form-data" action="{% url 'courses:uploadvideo' co.id %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="static-label">دوره: <strong>{{co.name}}</strong></label>
+        </div>
+
+        <div class="form-group">
+          <label for="chapter">: فصل</label>
+          {% if co.titles %}
+          <select id="chapter" name="title">
+            {% for c in co.titles.all %}
+            <option value="{{ c.id }}">{{ c.title }}</option>
+            {% endfor %}
+          </select>
+          {% else %}
+          <div>دوره سر فصلی ندارد</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          <label for="video">آپلود ویدیو:</label>
+          <input type="file" id="video" name="video" accept="video/*" />
+        </div>
+
+        <div class="form-group">
+          <label for="thumbnail">تامنیل ویدیو:</label>
+          <input type="file" id="thumbnail" name="thumbnail" accept="image/*" />
+        </div>
+
+        <div class="form-group">
+          <label for="title">عنوان قسمت:</label>
+          <input
+            type="text"
+            id="title"
+            name="name"
+            placeholder="مثلاً آموزش لیست‌ها در HTML"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="description">توضیحات:</label>
+          <textarea
+            id="description"
+            name="info"
+            rows="4"
+            placeholder="توضیح کوتاه در مورد این قسمت..."
+          ></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">ثبت قسمت</button>
+        <a href="{% url 'courses:editcourse' co.id %}" class="back-link">⬅ بازگشت </a>
+      </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Blog{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'home/css/blog.css' %}">
+  <link rel="stylesheet" href="{% static 'home/css/responsive.css' %}" />
+  <link rel="stylesheet" href="{% static 'home/css/reset.css' %}">
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v33.003/Vazir-font-face.css" rel="stylesheet" />
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-…"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+{% endblock %}
+{% block body %}
+    <!-- PAGE HERO -->
+    <section class="page-header">
+      <h1>وبلاگ</h1>
+      <nav class="breadcrumb">
+        <a class="page-header__index" href="{% url 'home:home' %}">خانه</a>
+        <span>/</span>
+        <a class="breadcrumb__contact" href="{% url 'home:blog' %}">بلاگ</a>
+      </nav>
+    </section>
+
+    <!-- blog-->
+
+<section class="blog">
+  <div class="container">
+    <div class="blog__header">
+      <h2 class="blog__title">آخرین مقالات</h2>
+      <p class="blog__subtitle">جدیدترین مطالب آموزشی و اخبار را بخوانید</p>
+    </div>
+   <div class="blog__list">
+    {% for blg in blog %}
+      <article class="blog__item">
+        <div class="blog__image-wrapper">
+          <img src="{{ blg.icon.url }}" alt="blog1" class="blog__image" />
+        </div>
+        <div class="blog__content">
+          <span class="blog__date">{{ blg.created }}</span>
+
+              <h3 class="blog__item-title">{{ blg.first_intro }}</h3>
+              <p class="blog__text">{{ blg.introduction|truncatewords:30 }} ....</p>
+
+          <a href="{% url 'home:blogpost' blg.pk %}" class="blog__link">بیشتر بخوانید</a>
+        </div>
+      </article>
+    {% endfor %}
+
+    </div>
+    <!-- <form class="blog__form" action="/load-more-articles" method="POST">
+      <input type="hidden" name="action" value="load_more_articles">
+      <button type="submit" class="blog__button">مشاهده بیشتر مقالات</button>
+    </form> -->
+  </div>
+</section>
+
+
+
+
+
+
+
+    <!-- ====================== subscribe====================== -->
+<section class="subscribe-section">
+  <div class="subscribe-container">
+    <div class="subscribe-text">
+      <p class="subscribe-subtitle">آیا تحت تاثیر خدمات شگفت‌انگیز هستید؟</p>
+      <h2 class="subscribe-title">مشترک خبرنامه ما شوید</h2>
+    </div>
+    <form class="subscribe-form" action="{% url 'home:blog' %}" method="post">
+      {% csrf_token %}
+      <input type="email" name="email" value="{{ user.email }}" placeholder="آدرس ایمیل شما" required>
+      <button type="submit">مشترک شدن</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

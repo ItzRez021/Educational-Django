@@ -1,0 +1,54 @@
+
+   
+  <header class="header">
+    <div class="header__container">
+      <a class="header__logo" href="#">OFFSITE</a>
+         <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+
+    <nav class="mobile-nav" id="mobileNav">
+      <ul>
+        <li><a href="{% url 'home:home' %}">خانه</a></li>
+        <li><a href="{% url 'courses:allcourses' %}">دوره‌ها</a></li>
+        <li><a href="{% url 'home:blog' %}">وبلاگ</a></li>
+        <li><a href="{% url 'home:contactus' %}">تماس با ما</a></li>
+      </ul>
+    </nav>
+      <nav class="header__nav" id="navMenu">
+        <ul class="header__menu">
+          <li class="header__item"><a href="{% url 'home:home' %}" class="header__link">خانه</a></li>
+          <li class="header__item"><a href="{% url 'courses:allcourses' %}" class="header__link">دوره‌ها</a></li>
+          <li class="header__item"><a href="{% url 'home:blog' %}" class="header__link">وبلاگ</a></li>
+          <li class="header__item"><a href="{% url 'home:contactus' %}" class="header__link">تماس با ما</a></li>
+        </ul>
+      </nav>
+     <form action="{% url 'home:search' %}" method="get" class="header__form">
+  <div class="header__icons">
+    <input type="search" class="header__search" name="q" placeholder="جستجوی دوره‌ها..." />
+    <button class="header__burger" id="burgerBtn" type="button"><i class="fa fa-bars"></i></button>
+    <button class="search-btn" type="submit">
+  <i class="fa fa-search"></i>
+</button>
+    {% if user.is_authenticated and user.is_teacher %}
+    <a href="{% url 'accounts:teacherprofile' user.teacher.pk %}">
+    <img class="header__prof" src="{{user.teacher.icon.url}}" alt="">
+    </a>
+    {% elif user.is_authenticated and not user.is_teacher %}
+    <a href="{% url 'accounts:cart' pk=request.user.cart.pk %}">
+    <img class="header__prof" src="{{MU}}img/R.svg" alt="">
+    </a>
+    <a href="{% url 'accounts:profile' pk=request.user.profile.id %}">
+    <img class="header__prof" src="{{user.profile.icon.url}}" alt="">
+    </a>
+    {% elif not user.is_authenticated %}
+    <a href="{% url 'accounts:register' %}" class="header__register">ثبت نام</a>
+    {% endif %}
+  </div>
+</form>
+
+      
+  </header>

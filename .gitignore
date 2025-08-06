@@ -1,0 +1,5 @@
+# Ignore the database file
+db.sqlite3
+
+# Ignore media folder (uploaded files)
+media/
